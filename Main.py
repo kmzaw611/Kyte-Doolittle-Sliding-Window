@@ -18,14 +18,14 @@ content.grid()
 
 prot_seq_label = Label(content)
 prot_seq_label['text'] = 'Enter Protein Sequence: '
-prot_seq_label.grid(row=0, column=0, ipadx=10, pady=5, sticky=S)
+prot_seq_label.grid(row=0, column=0, padx=5, pady=5, sticky=S)
 
 aa_seq_box = Text(content, width=60, height=15)
-aa_seq_box.grid(row=0, column=1, rowspan=2, padx=15, pady=10)
+aa_seq_box.grid(row=0, column=1, rowspan=2, padx=10, pady=10)
 
 open_file_button = Button(content)
 open_file_button['text'] = "Or parse Fasta file"
-open_file_button.grid(row=1, column=0, ipadx=10, pady=5, sticky=N)
+open_file_button.grid(row=1, column=0, padx=5, pady=5, sticky=N)
 
 window_size_label = Label(content)
 window_size_label['text'] = 'Window Size: '
