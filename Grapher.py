@@ -5,8 +5,8 @@
 """
 This file contains code for graphing the average hydropathy values obtained from the algorithm.
 """
-import matplotlib as mpl
 from matplotlib import pyplot
+import math
 
 
 def plotHydropathGraph(avg_hydropath_dict, window_size):
@@ -34,7 +34,12 @@ def plotHydropathGraph(avg_hydropath_dict, window_size):
     fig.patch.set_edgecolor((1.0, 1.0, 1.0))
 
     axes = pyplot.gca()
-    axes.set_ylim([min(y_values)-1, max(y_values)+1])
+    axes.set_ylim(math.floor(min(y_values)), math.ceil(max(y_values)))
     axes.set_facecolor((0.0, 0.0, 0.0))
-
+    axes.spines['bottom'].set_color('white')
+    axes.spines['top'].set_color('white')
+    axes.spines['left'].set_color('white')
+    axes.spines['right'].set_color('white')
+    axes.margins(x=0)
+    axes.grid(axis='y')
     pyplot.show()
