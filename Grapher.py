@@ -18,15 +18,14 @@ def plotHydropathGraph(avg_hydropath_dict, window_size):
 
     pyplot.plot(x_values, y_values, '-y', linewidth=2.0)
 
-    pyplot.xlabel('Amino Acid Number (Window Size = ' + str(window_size) + ')', color='white')
+    pyplot.xlabel('Amino Acid Number (Window Size = ' + str(window_size) + ')', color='white', size='large', labelpad=20)
     for i in pyplot.gca().get_xticklabels():
         i.set_color("white")
 
-    pyplot.ylabel('Average Hydrophobicity Value', color='yellow')
     for i in pyplot.gca().get_yticklabels():
         i.set_color("yellow")
 
-    pyplot.title("Kyte-Doolittle Graph", color='yellow')
+    pyplot.title("Kyte-Doolittle Graph (Hydrophobicity)", color='yellow', size='xx-large', pad=25)
 
     fig = pyplot.gcf()
     fig.set_size_inches(16, 8)
