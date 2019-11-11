@@ -35,9 +35,11 @@ window_size_box = Entry(content)
 window_size_box.grid(row=2, column=1)
 
 
+
 def plot_button_pressed(event):
     aa_seq = aa_seq_box.get(0.0, END).lower().replace('\n', '')
-    plotHydropathGraph(get_avg_hydropathy_dict(aa_seq, int(window_size_box.get())), "test")
+    window_size = int(window_size_box.get())
+    plotHydropathGraph(get_avg_hydropathy_dict(aa_seq, window_size), window_size)
 
 
 plot_button = Button(content)
