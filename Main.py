@@ -35,7 +35,6 @@ window_size_box = Entry(content)
 window_size_box.grid(row=2, column=1)
 
 
-
 def plot_button_pressed(event):
     aa_seq = aa_seq_box.get(0.0, END).lower().replace('\n', '')
     window_size = int(window_size_box.get())
