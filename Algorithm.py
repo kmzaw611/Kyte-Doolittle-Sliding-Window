@@ -24,8 +24,7 @@ def get_avg_hydropathy_dict(aa_seq, window_size):
             hydropathy_value = hydro_scale[aa]
             hydropathy_sum += hydropathy_value
         hydropathy_avg = hydropathy_sum / window_size
-        # we increment by 1 for the key value since for the program, we want index to start at 1
-        avg_hydropathy_dict[window_index + 1] = hydropathy_avg
+        avg_hydropathy_dict[window_index] = hydropathy_avg
         window_index += 1
 
     return avg_hydropathy_dict
