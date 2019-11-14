@@ -14,10 +14,31 @@ from tkinter import filedialog
 from tkinter.messagebox import showerror
 import os.path
 
+
 def plot_button_pressed(event):
     aa_seq = aa_seq_box.get(0.0, END).lower().replace('\n', '')
     window_size = int(window_size_box.get())
-    plotHydropathGraph(get_avg_hydropathy_dict(aa_seq, window_size), window_size)
+    plotHydropathGraph(get_avg_hydropathy_dict(aa_seq, window_size), window_size, sequence_name)
+    print(repr(sequence_name))
+
+
+# The name of the sequence that is graphed. For a text file, it will just be the name of the text file.
+# For a FASTA file, it will be the description accompanying the sequence.
+sequence_name = ""
+
+
+def parse_fasta_file(file):
+    """
+    Sets the sequence_name variable to the description in the FASTA file.
+    :param file: A Fasta file with the description of the sequence and the sequence.
+    :return: The amino acid sequence of the Fasta file.
+    """
+
+    # the first line of a fasta file is usually the description of the amino acid sequence.
+    first_line = file.readline()
+    global sequence_name
+    sequence_name = first_line.replace(">", "")
+    return file.read()
 
 
 def open_button_pressed(event):
@@ -28,12 +49,17 @@ def open_button_pressed(event):
             file = open(filename, 'r')
             extension = os.path.splitext(filename)[1]
             if extension == '.fasta':
-                print('bruh moment')
+                aa_seq = parse_fasta_file(file)
+                aa_seq_box.delete(0.0, END)
+                aa_seq_box.insert(INSERT, aa_seq)
             elif extension == '.txt':
                 aa_seq = file.read().lower().replace('\n', '')
+                aa_seq_box.delete(0.0, END)
                 aa_seq_box.insert(INSERT, aa_seq)
+                global sequence_name
+                sequence_name = os.path.basename(filename).replace('\n', '')
 
-        except:
+        except FileNotFoundError and IOError:
             showerror("Error Reading File", "Failed to read the file: '%s'" % os.path.basename(filename))
 
 

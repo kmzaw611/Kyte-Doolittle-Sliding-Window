@@ -9,7 +9,7 @@ from matplotlib import pyplot
 import math
 
 
-def plotHydropathGraph(avg_hydropath_dict, window_size):
+def plotHydropathGraph(avg_hydropath_dict, window_size, sequence_name):
     x_values = []
     y_values = []
     for key in avg_hydropath_dict:
@@ -18,14 +18,16 @@ def plotHydropathGraph(avg_hydropath_dict, window_size):
 
     pyplot.plot(x_values, y_values, '-y', linewidth=2.0)
 
-    pyplot.xlabel('Amino Acid Number (Window Size = ' + str(window_size) + ')', color='white', size='large', labelpad=20)
+    pyplot.xlabel('Amino Acid Number (Window Size = ' + str(window_size) + ')', color='white', size='x-large', labelpad=20)
     for i in pyplot.gca().get_xticklabels():
         i.set_color("white")
 
     for i in pyplot.gca().get_yticklabels():
         i.set_color("yellow")
 
-    pyplot.title("Kyte-Doolittle Graph (Hydrophobicity)", color='yellow', size='xx-large', pad=25)
+    pyplot.suptitle("Kyte-Doolittle Graph (Hydrophobicity)", color='yellow', size='xx-large', y=0.97)
+    #pyplot.title(sequence_name, color='white', size='x-large', y=0.98)
+    pyplot.figtext(.5, .875, sequence_name, fontsize=14, ha='center', color='white')
 
     fig = pyplot.gcf()
     fig.set_size_inches(16, 8)
