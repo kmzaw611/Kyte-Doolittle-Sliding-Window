@@ -15,7 +15,7 @@ from tkinter.messagebox import showerror
 import os.path
 
 
-def plot_button_pressed(event):
+def plot_button_pressed():
     aa_seq = aa_seq_box.get(0.0, END).lower().replace('\n', '')
     window_size = int(window_size_box.get())
     plotHydropathGraph(get_avg_hydropathy_dict(aa_seq, window_size), window_size, sequence_name)
@@ -40,9 +40,10 @@ def parse_fasta_file(file):
     return file.read()
 
 
-def open_button_pressed(event):
+def open_button_pressed():
     filename = filedialog.askopenfilename(title="Select sequence file", filetypes=(("FASTA files", "*.fasta"),
                                                                                    ("Text files", "*.txt")))
+
     if filename:
         try:
             file = open(filename, 'r')
@@ -61,7 +62,6 @@ def open_button_pressed(event):
         except FileNotFoundError and IOError:
             showerror("Error Reading File", "Failed to read the file: '%s'" % os.path.basename(filename))
 
-
 root = Tk()
 root.title("Kyte-Doolittle Hydropathy Sliding Window Program")
 content = Frame(root)
@@ -75,10 +75,9 @@ v = StringVar()
 aa_seq_box = Text(content, width=60, height=15)
 aa_seq_box.grid(row=0, column=1, rowspan=2, padx=10, pady=10)
 
-open_file_button = Button(content)
+open_file_button = Button(content, command=open_button_pressed)
 open_file_button['text'] = "Or parse Fasta file"
 open_file_button.grid(row=1, column=0, padx=5, pady=5, sticky=N)
-open_file_button.bind("<Button-1>", open_button_pressed)
 
 window_size_label = Label(content)
 window_size_label['text'] = 'Window Size: '
@@ -87,9 +86,8 @@ window_size_label.grid(row=2, column=0, pady=10)
 window_size_box = Entry(content)
 window_size_box.grid(row=2, column=1)
 
-plot_button = Button(content)
+plot_button = Button(content, command=plot_button_pressed)
 plot_button['text'] = "Plot Graph"
 plot_button.grid(row=3, column=1, pady=10)
-plot_button.bind("<Button-1>", plot_button_pressed)
 
 root.mainloop()
