@@ -26,9 +26,7 @@ def plotHydropathGraph(avg_hydropath_dict, window_size, sequence_name):
         i.set_color("yellow")
 
     pyplot.suptitle("Kyte-Doolittle Graph (Hydrophobicity)", color='yellow', size='xx-large', y=0.97)
-    #pyplot.title(sequence_name, color='white', size='x-large', y=0.98)
     pyplot.figtext(.5, .875, sequence_name, fontsize=14, ha='center', color='white')
-    print(repr(sequence_name))
 
     fig = pyplot.gcf()
     fig.set_size_inches(16, 8)
