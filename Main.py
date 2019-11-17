@@ -19,7 +19,6 @@ def plot_button_pressed(event):
     aa_seq = aa_seq_box.get(0.0, END).lower().replace('\n', '')
     window_size = int(window_size_box.get())
     plotHydropathGraph(get_avg_hydropathy_dict(aa_seq, window_size), window_size, sequence_name)
-    print(repr(sequence_name))
 
 
 # The name of the sequence that is graphed. For a text file, it will just be the name of the text file.
@@ -57,7 +56,7 @@ def open_button_pressed(event):
                 aa_seq_box.delete(0.0, END)
                 aa_seq_box.insert(INSERT, aa_seq)
                 global sequence_name
-                sequence_name = os.path.basename(filename).replace('\n', '')
+                sequence_name = os.path.basename(filename) + "\n"
 
         except FileNotFoundError and IOError:
             showerror("Error Reading File", "Failed to read the file: '%s'" % os.path.basename(filename))
