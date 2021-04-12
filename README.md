@@ -1,6 +1,17 @@
 # Kyte Doolittle Sliding Window Program
 This program uses the Kyte-Doolittle scale to draw hydrophobicity plots for sequences of amino acids/proteins.
 
+## Dependencies
+
+
+Install tkinter for Python
+
+``` sudo pacman -S tk``` or  ``` sudo apt-get install tk ``` or else for othes os  
+
+Install all python libs 
+
+```pip install -r requirements.txt```
+
 ## Usage
 ![](images/menu.png)<br />
 
@@ -15,3 +26,4 @@ the sequence. If the FASTA file has a description, it will be added to the graph
 
 ### Step 3: Plot the graph
 ![](images/graph.png)
+ 
